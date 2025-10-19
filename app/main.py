@@ -4,11 +4,11 @@ import os
 def copy_file(command: str) -> None:
     parts = command.split(" ")
     if len(parts) == 3 and parts[0] == "cp":
-        _, file1, file2 = command.split()
-        if file1 == file2:
+        cmd, source_file_name, destination_file_name = parts
+        if source_file_name == destination_file_name:
             return
-        if os.path.exists(file1):
-            with (open(file1, "r") as input_file,
-                  open(file2, "w") as output_file):
+        if os.path.exists(source_file_name):
+            with (open(source_file_name, "r") as input_file,
+                  open(destination_file_name, "w") as output_file):
                 for line in input_file:
                     output_file.write(line)
